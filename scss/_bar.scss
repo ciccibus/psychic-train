@@ -1,0 +1,20 @@
+.c-bar__container {
+  background-color: var(--primary-color-50);
+  height: 5px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.c-bar__value {
+  background-color: var(--primary-color-A700);
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+@for $i from 1 through 100 {
+  .c-bar__value-#{$i} {
+    width: percentage($i / 100);
+  }
+}
