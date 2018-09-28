@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Psychic Train</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/fontfaceobserver.js"></script>
+    <script type="text/javascript">
+        (function () {
+            document.documentElement.className += " wf-inactive";
+
+            // Optimization for Repeat Views
+            if (sessionStorage.foutFontsLoaded) {
+                document.documentElement.classList.remove("wf-inactive");
+                document.documentElement.classList.add("wf-active");
+                return;
+            }
+
+            var fontA = new FontFaceObserver("Montserrat", {});
+
+            Promise.all([fontA.load()]).then(function () {
+                console.log("fontA loaded");
+                document.documentElement.classList.remove("wf-inactive");
+                document.documentElement.classList.add("wf-active");
+
+                // Optimization for Repeat Views
+                sessionStorage.foutFontsLoaded = true;
+            });
+        })();
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header class="c-header u-container">
+        Psychic Train
+    </header>
+    <main class="u-container" style="margin-top: 100px;">
+        <h1>Profile</h1>
+    </main>
+    <footer>
+        <nav class="c-nav-bar u-container--wide">
+            <ul class="u-clean-list u-flex">
+                <li class="c-nav-bar__item">
+                    <a href="#"><i class="fab fa-black-tie fa-3x"></i> <span class="u-visually-hidden">Carrer</span></a>
+                </li>
+                <li class="c-nav-bar__item c-nav-bar__item-priority">
+                    <a href="#"><i class="fas fa-user-clock fa-3x"></i> <span class="u-visually-hidden">News year</span></a>
+                </li>
+                <li class="c-nav-bar__item">
+                    <a href="#"><i class="fas fa-user-alt fa-3x"></i> <span class="u-visually-hidden">Profile</span></a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

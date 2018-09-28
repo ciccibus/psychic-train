@@ -1,0 +1,18 @@
+.c-card {
+  background-color: #fff;
+  border-bottom: 2px solid var(--primary-color-A700);
+  margin: 0 -20px 30px -20px;
+}
+.c-card__header {
+  color: #fff;
+  background-color: var(--primary-color-A700);
+  padding: 10px;
+}
+
+.c-card__feed {
+  margin: 10px;
+}
+
+.c-card__event {
+  margin-bottom: 10px;
+}
