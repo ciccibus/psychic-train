@@ -8,16 +8,6 @@
   color: #fff;
 }
 
-.c-nav-bar__item {
-  @include flex();
-  flex-basis: 33%;
-  align-items: center;
-  justify-content: center;
-  a {
-    color: inherit;
-  }
-}
-
 .c-nav-bar__item-priority {
   color: var(--primary-color-A700);
   background-color: #fff;

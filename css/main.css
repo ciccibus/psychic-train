@@ -706,21 +706,6 @@ textarea {
   background-color: var(--primary-color-A700);
   color: #fff; }
 
-.c-nav-bar__item {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  flex-basis: 33%;
-  align-items: center;
-  justify-content: center; }
-  .c-nav-bar__item a {
-    color: inherit; }
-
 .c-nav-bar__item-priority {
   color: var(--primary-color-A700);
   background-color: #fff;
@@ -1055,3 +1040,19 @@ textarea {
 
 .c-bar__value-100 {
   width: 100%; }
+
+.c-button a {
+  color: inherit; }
+
+.c-button--1-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  flex-basis: 33%;
+  align-items: center;
+  justify-content: center; }
