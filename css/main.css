@@ -714,7 +714,7 @@ textarea {
 
 .c-card {
   background-color: #fff;
-  border-bottom: 2px solid var(--primary-color-A700);
+  border-bottom: 2px solid var(--primary-color-100);
   margin: 0 -20px 30px -20px; }
 
 .c-card__header {
