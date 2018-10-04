@@ -8,9 +8,11 @@
 
 .c-bar__value {
   background-color: var(--primary-color-A700);
+  width: 0;
   height: 5px;
   border-radius: 3px;
   overflow: hidden;
+  transition: width 2s ease-in-out 0.5s;
 }
 
 @for $i from 1 through 100 {

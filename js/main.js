@@ -1,3 +1,3 @@
-import answer from "./the-answer";
+import renderProfile from "./components/profile";
 
-answer();
+renderProfile();

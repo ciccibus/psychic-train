@@ -4,6 +4,7 @@
   "description": "",
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "autoprefixer": "^9.1.5",
     "node-sass": "^4.9.3",
@@ -16,9 +17,10 @@
     "rollup-plugin-uglify": "^6.0.0"
   },
   "scripts": {
+    "styles": "node-sass scss/main.scss css/main.css -w -r",
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "dev": "npm-run-all --parallel start watch",
+    "dev": "npm-run-all --parallel start watch styles",
     "start": "http-server"
   },
   "repository": {
@@ -30,5 +32,9 @@
   "bugs": {
     "url": "https://github.com/ciccibus/psychic-train/issues"
   },
-  "homepage": "https://github.com/ciccibus/psychic-train#readme"
+  "homepage": "https://github.com/ciccibus/psychic-train#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.1.2",
+    "rollup-plugin-async": "^1.2.0"
+  }
 }

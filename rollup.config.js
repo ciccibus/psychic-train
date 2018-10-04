@@ -2,9 +2,6 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import { uglify } from "rollup-plugin-uglify";
 import babel from "rollup-plugin-babel";
-import sass from "node-sass";
-import autoprefixer from "autoprefixer";
-import postcss from "rollup-plugin-postcss";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -16,22 +13,17 @@ export default {
     sourcemap: true
   },
   plugins: [
-    resolve(), // tells Rollup how to find date-fns in node_modules
+    resolve({
+      jsnext: true,
+      main: true
+    }),
     babel({
-      exclude: "node_modules/**" // only transpile our source code
+      runtimeHelpers: true,
+      exclude: "node_modules/**", // only transpile our source code
+      plugins: ["@babel/plugin-transform-runtime"],
+      externalHelpers: true
     }),
     commonjs(), // converts date-fns to ES modules
-    postcss({
-      preprocessor: (content, id) =>
-        new Promise((resolve, reject) => {
-          const result = sass.renderSync({ file: id });
-          resolve({ code: result.css.toString() });
-        }),
-      plugins: [autoprefixer],
-      sourceMap: true,
-      extract: true,
-      extensions: [".sass", ".scss", ".css"]
-    }),
     production && uglify() // minify, but only in production
   ]
 };
