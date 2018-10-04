@@ -2,8 +2,14 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function storeProfile(profile) {
+  console.log("-== STORING PROFILE ==-");
+  return localStorage.setItem("profile", JSON.stringify(profile));
+}
+
 function generateCharacter() {
-  return [
+  console.log("-== GENERATING PROFILE ==-");
+  const profile = [
     {
       name: "Happiness",
       value: 100
@@ -33,6 +39,8 @@ function generateCharacter() {
       value: getRandomInt(20, 80)
     }
   ];
+  storeProfile(profile);
+  return profile;
 }
 
 export { getRandomInt, generateCharacter };

@@ -2,17 +2,34 @@ import { Component } from "../component.js";
 import ProfileItem from "./profile-item";
 import { fetchProfile } from "../fetchProfile";
 
-const profileContainer = document.getElementById("profile");
+const profileContainer = document.getElementById("main");
 
 const html = String.raw;
 
 class Profile extends Component {
   static component() {
     return html`
-    <header class="c-card__header">Profile</header>
-    <ul class="c-card__feed u-clean-list">
-        <x-profile></x-profile>
-    </ul>
+    <nav class="c-nav-bar--secondary u-container--wide">
+        <ul class="u-clean-list u-flex u-flex--wrap">
+            <li class="c-button c-button--1-3 c-nav-bar__item-priority">
+                <a href="career.html"><i class="far fa-chart-bar fa-2x"></i> <span class="u-visually-hidden">Your
+                        stats</span></a>
+            </li>
+            <li class="c-button c-button--1-3">
+                <a href="#"><i class="fas fa-dollar-sign fa-2x"></i> <span class="u-visually-hidden">Your finance</span></a>
+            </li>
+            <li class="c-button c-button--1-3">
+                <a href="profile.html"><i class="fas fa-user-alt fa-2x"></i> <span class="u-visually-hidden">Profile</span></a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Your stats</h1>
+    <article id="profile" class="c-card">
+      <header class="c-card__header">Profile</header>
+      <ul class="c-card__feed u-clean-list">
+          <x-profile></x-profile>
+      </ul>
+    </article>
     `;
   }
   connectedCallback() {
@@ -34,7 +51,7 @@ class Profile extends Component {
 customElements.define("x-profile-item", ProfileItem);
 customElements.define("x-profile", Profile);
 
-const main = function(profile) {
+const main = function() {
   if (profileContainer) {
     profileContainer.innerHTML = Profile.component();
   }

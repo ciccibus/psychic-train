@@ -1,3 +1,4 @@
-import renderProfile from "./components/profile";
-
-renderProfile();
+import Profile from "./components/profile";
+import MainNav from "./components/nav";
+MainNav();
+Profile();

@@ -1074,8 +1074,14 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function storeProfile(profile) {
+    console.log("-== STORING PROFILE ==-");
+    return localStorage.setItem("profile", JSON.stringify(profile));
+  }
+
   function generateCharacter() {
-    return [{
+    console.log("-== GENERATING PROFILE ==-");
+    var profile = [{
       name: "Happiness",
       value: 100
     }, {
@@ -1097,6 +1103,8 @@
       name: "Social",
       value: getRandomInt(20, 80)
     }];
+    storeProfile(profile);
+    return profile;
   }
 
   function fetchProfile() {
@@ -1112,14 +1120,28 @@
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              console.log("-== FETCHING PROFILE ==-");
+              _context.t1 = JSON;
+              _context.next = 4;
               return localStorage.getItem("profile");
 
-            case 2:
-              profile = _context.sent;
-              return _context.abrupt("return", generateCharacter());
-
             case 4:
+              _context.t2 = _context.sent;
+              _context.t0 = _context.t1.parse.call(_context.t1, _context.t2);
+
+              if (_context.t0) {
+                _context.next = 8;
+                break;
+              }
+
+              _context.t0 = generateCharacter();
+
+            case 8:
+              profile = _context.t0;
+              console.log("-== FETCHED PROFILE ==-");
+              return _context.abrupt("return", profile);
+
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -1130,7 +1152,7 @@
   }
 
   function _templateObject$1() {
-    var data = taggedTemplateLiteral(["\n    <header class=\"c-card__header\">Profile</header>\n    <ul class=\"c-card__feed u-clean-list\">\n        <x-profile></x-profile>\n    </ul>\n    "]);
+    var data = taggedTemplateLiteral(["\n    <nav class=\"c-nav-bar--secondary u-container--wide\">\n        <ul class=\"u-clean-list u-flex u-flex--wrap\">\n            <li class=\"c-button c-button--1-3 c-nav-bar__item-priority\">\n                <a href=\"career.html\"><i class=\"far fa-chart-bar fa-2x\"></i> <span class=\"u-visually-hidden\">Your\n                        stats</span></a>\n            </li>\n            <li class=\"c-button c-button--1-3\">\n                <a href=\"#\"><i class=\"fas fa-dollar-sign fa-2x\"></i> <span class=\"u-visually-hidden\">Your finance</span></a>\n            </li>\n            <li class=\"c-button c-button--1-3\">\n                <a href=\"profile.html\"><i class=\"fas fa-user-alt fa-2x\"></i> <span class=\"u-visually-hidden\">Profile</span></a>\n            </li>\n        </ul>\n    </nav>\n    <h1>Your stats</h1>\n    <article id=\"profile\" class=\"c-card\">\n      <header class=\"c-card__header\">Profile</header>\n      <ul class=\"c-card__feed u-clean-list\">\n          <x-profile></x-profile>\n      </ul>\n    </article>\n    "]);
 
     _templateObject$1 = function _templateObject() {
       return data;
@@ -1138,7 +1160,7 @@
 
     return data;
   }
-  var profileContainer = document.getElementById("profile");
+  var profileContainer = document.getElementById("main");
   var html$1 = String.raw;
 
   var Profile =
@@ -1184,12 +1206,103 @@
   customElements.define("x-profile-item", ProfileItem);
   customElements.define("x-profile", Profile);
 
-  var main = function main(profile) {
+  var main = function main() {
     if (profileContainer) {
       profileContainer.innerHTML = Profile.component();
     }
   };
 
+  var DelegatedListener =
+  /*#__PURE__*/
+  function () {
+    function DelegatedListener(delegated) {
+      classCallCheck(this, DelegatedListener);
+
+      this.delegated = delegated;
+    }
+
+    createClass(DelegatedListener, [{
+      key: "handleEvent",
+      value: function handleEvent(event) {
+        this.delegated["on" + event.type](event, this);
+      }
+    }]);
+
+    return DelegatedListener;
+  }();
+
+  function _templateObject2$1() {
+    var data = taggedTemplateLiteral(["\n        <x-main-nav>\n          ", "\n        </x-main-nav>\n        "]);
+
+    _templateObject2$1 = function _templateObject2() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject$2() {
+    var data = taggedTemplateLiteral(["\n      <nav class=\"c-nav-bar u-container--wide\">\n        <ul class=\"u-clean-list u-flex\">\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/career\"><i class=\"fab fa-black-tie fa-2x\"></i> <span class=\"u-visually-hidden\">Carrer</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-nav-bar__item-priority c-button--1-3\">\n            <a href=\"/new-year\"><i class=\"fas fa-user-clock fa-2x\"></i> <span class=\"u-visually-hidden\">News year</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/profile\"><i class=\"fas fa-user-alt fa-2x\"></i> <span class=\"u-visually-hidden\">Profile</span></a>\n          </li>\n        </ul>\n      </nav>\n      "]);
+
+    _templateObject$2 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var html$2 = String.raw;
+
+  var MainNav =
+  /*#__PURE__*/
+  function (_Component) {
+    inherits(MainNav, _Component);
+
+    function MainNav() {
+      classCallCheck(this, MainNav);
+
+      return possibleConstructorReturn(this, getPrototypeOf(MainNav).apply(this, arguments));
+    }
+
+    createClass(MainNav, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        this.addEventListener("click", new DelegatedListener(this)); // [...this.getElementsByTagName("a")].forEach(link => {
+        //   link.addEventListener("click", new DelegatedListener(this));
+        // });
+      }
+    }, {
+      key: "onclick",
+      value: function onclick(event) {
+        event.preventDefault();
+        console.log(event.currentTarget, event.target);
+
+        if (event.target && event.target.nodeName == "LI") {
+          console.log(event.target.querySelector("a").href);
+        }
+      }
+    }], [{
+      key: "template",
+      value: function template() {
+        return html$2(_templateObject$2());
+      }
+    }, {
+      key: "component",
+      value: function component() {
+        return html$2(_templateObject2$1(), this.template());
+      }
+    }]);
+
+    return MainNav;
+  }(Component);
+
+  customElements.define("x-main-nav", MainNav);
+
+  var main$1 = function main() {
+    document.getElementById("footer").innerHTML = MainNav.component();
+  };
+   //node.addEventListener('click', new DelegatedListener(this));
+
+  main$1();
   main();
 
 }());

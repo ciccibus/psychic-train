@@ -1,8 +1,11 @@
 import { generateCharacter } from "./utils";
 
 async function fetchProfile() {
-  const profile = await localStorage.getItem("profile");
-  return generateCharacter();
+  console.log("-== FETCHING PROFILE ==-");
+  const profile =
+    JSON.parse(await localStorage.getItem("profile")) || generateCharacter();
+  console.log("-== FETCHED PROFILE ==-");
+  return profile;
 }
 
 export { fetchProfile };
