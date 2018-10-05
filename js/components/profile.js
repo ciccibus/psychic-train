@@ -12,7 +12,7 @@ class Profile extends Component {
     return html`
     <nav class="c-nav-bar--secondary u-container--wide">
         <ul class="u-clean-list u-flex u-flex--wrap">
-            <li class="c-button c-button--1-3 c-nav-bar__item-priority">
+            <li class="c-button c-button--1-3 c-nav-bar__item-priority c-nav-bar__item-priority-top">
                 <a href="career.html"><i class="far fa-chart-bar fa-2x"></i> <span class="u-visually-hidden">Your
                         stats</span></a>
             </li>
