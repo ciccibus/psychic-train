@@ -33,11 +33,13 @@ class MainNav extends Component {
     //   link.addEventListener("click", new DelegatedListener(this));
     // });
   }
-  onclick(event) {
-    event.preventDefault();
-    console.log(event.currentTarget, event.target);
-    if (event.target && event.target.nodeName == "LI") {
-      console.log(event.target.querySelector("a").href);
+  onclick(e) {
+    e.preventDefault();
+    if (e.target && e.target.nodeName == "LI") {
+      const eventName = e.target.querySelector("a").pathname.substring(1);
+      console.log(`on-${eventName}`);
+      const event = new CustomEvent(`on-${eventName}`);
+      document.body.dispatchEvent(event);
     }
   }
 }

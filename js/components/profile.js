@@ -52,9 +52,10 @@ customElements.define("x-profile-item", ProfileItem);
 customElements.define("x-profile", Profile);
 
 const main = function() {
-  if (profileContainer) {
+  console.log("MAIN");
+  document.body.addEventListener("on-profile", e => {
     profileContainer.innerHTML = Profile.component();
-  }
+  });
 };
 
 export default main;

@@ -1207,9 +1207,10 @@
   customElements.define("x-profile", Profile);
 
   var main = function main() {
-    if (profileContainer) {
+    console.log("MAIN");
+    document.body.addEventListener("on-profile", function (e) {
       profileContainer.innerHTML = Profile.component();
-    }
+    });
   };
 
   var DelegatedListener =
@@ -1272,12 +1273,14 @@
       }
     }, {
       key: "onclick",
-      value: function onclick(event) {
-        event.preventDefault();
-        console.log(event.currentTarget, event.target);
+      value: function onclick(e) {
+        e.preventDefault();
 
-        if (event.target && event.target.nodeName == "LI") {
-          console.log(event.target.querySelector("a").href);
+        if (e.target && e.target.nodeName == "LI") {
+          var eventName = e.target.querySelector("a").pathname.substring(1);
+          console.log("on-".concat(eventName));
+          var event = new CustomEvent("on-".concat(eventName));
+          document.body.dispatchEvent(event);
         }
       }
     }], [{
