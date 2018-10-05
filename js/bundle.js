@@ -1070,6 +1070,36 @@
 
   var asyncToGenerator = _asyncToGenerator;
 
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    }
+  }
+
+  var arrayWithoutHoles = _arrayWithoutHoles;
+
+  function _iterableToArray(iter) {
+    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  }
+
+  var iterableToArray = _iterableToArray;
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance");
+  }
+
+  var nonIterableSpread = _nonIterableSpread;
+
+  function _toConsumableArray(arr) {
+    return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+  }
+
+  var toConsumableArray = _toConsumableArray;
+
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -1081,6 +1111,21 @@
   function storeProfile(profile) {
     console.log("-== STORING PROFILE ==-");
     return localStorage.setItem("profile", JSON.stringify(profile));
+  }
+
+  function storeYear(year) {
+    console.log("-== STORING Years ==-");
+    return localStorage.setItem("years", JSON.stringify(year));
+  }
+
+  function toggleCssClass(param, className) {
+    if (param instanceof HTMLElement) {
+      return param.classList.toggle(className);
+    }
+
+    return toConsumableArray(document.querySelectorAll(param)).forEach(function (element) {
+      element.classList.toggle(className);
+    });
   }
 
   function generateCharacter() {
@@ -1109,6 +1154,15 @@
     }];
     storeProfile(profile);
     return profile;
+  }
+
+  function generateYear(yearsLength) {
+    console.log("-== GENERATING YEAR ==-");
+    var year = {
+      year: new Date().getFullYear() + yearsLength,
+      activities: ["buy milk", "buy cereal"]
+    };
+    return year;
   }
 
   function fetchProfile() {
@@ -1218,36 +1272,6 @@
     });
   };
 
-  function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-        arr2[i] = arr[i];
-      }
-
-      return arr2;
-    }
-  }
-
-  var arrayWithoutHoles = _arrayWithoutHoles;
-
-  function _iterableToArray(iter) {
-    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-  }
-
-  var iterableToArray = _iterableToArray;
-
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance");
-  }
-
-  var nonIterableSpread = _nonIterableSpread;
-
-  function _toConsumableArray(arr) {
-    return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-  }
-
-  var toConsumableArray = _toConsumableArray;
-
   var DelegatedListener =
   /*#__PURE__*/
   function () {
@@ -1278,7 +1302,7 @@
   }
 
   function _templateObject$2() {
-    var data = taggedTemplateLiteral(["\n      <nav class=\"c-nav-bar c-nav-bar--bottom u-container--wide\">\n        <ul class=\"u-clean-list u-flex\">\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/career\"><i class=\"fab fa-black-tie fa-2x\"></i> <span class=\"u-visually-hidden\">Carrer</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-nav-bar__item-priority c-button--1-3\">\n            <a href=\"/new-year\"><i class=\"fas fa-user-clock fa-2x\"></i> <span class=\"u-visually-hidden\">News year</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/profile\"><i class=\"fas fa-user-alt fa-2x\"></i> <span class=\"u-visually-hidden\">Profile</span></a>\n          </li>\n        </ul>\n      </nav>\n      "]);
+    var data = taggedTemplateLiteral(["\n      <nav class=\"c-nav-bar c-nav-bar--bottom u-container--wide\">\n        <ul class=\"u-clean-list u-flex\">\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/career\"><i class=\"fab fa-black-tie fa-2x\"></i> <span class=\"u-visually-hidden\">Carrer</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-nav-bar__item-priority c-button--1-3\">\n            <a href=\"/new-year\"><i class=\"fas fa-user-clock fa-2x\"></i> <span class=\"u-visually-hidden\">News year</span></a>\n          </li>\n          <li class=\"c-nav-bar__item c-button c-button--1-3\">\n            <a href=\"/profile\"><i class=\"fas fa-user-alt fa-2x\"></i> <span class=\"u-visually-hidden\">Profile</span></a>\n          </li>\n        </ul>\n      </nav>\n    "]);
 
     _templateObject$2 = function _templateObject() {
       return data;
@@ -1302,9 +1326,7 @@
     createClass(MainNav, [{
       key: "connectedCallback",
       value: function connectedCallback() {
-        this.addEventListener("click", new DelegatedListener(this)); // [...this.getElementsByTagName("a")].forEach(link => {
-        //   link.addEventListener("click", new DelegatedListener(this));
-        // });
+        this.addEventListener("click", new DelegatedListener(this));
       }
     }, {
       key: "onclick",
@@ -1312,16 +1334,22 @@
         e.preventDefault();
 
         if (e.target && e.target.nodeName == "LI") {
-          toConsumableArray(document.querySelectorAll(".c-nav-bar--bottom .c-nav-bar__item-priority")).forEach(function (element) {
-            element.classList.toggle("c-nav-bar__item-priority");
-          });
-
           var target = e.target;
-          target.classList.add("c-nav-bar__item-priority");
-          var eventName = target.querySelector("a").pathname.substring(1);
-          var event = new CustomEvent("on-".concat(eventName));
-          document.body.dispatchEvent(event);
+          this.toggle(target, "c-nav-bar__item-priority", ".c-nav-bar--bottom .c-nav-bar__item-priority");
+          this.sendEvent(target.querySelector("a").pathname.substring(1));
         }
+      }
+    }, {
+      key: "sendEvent",
+      value: function sendEvent(eventName) {
+        var event = new CustomEvent("on-".concat(eventName));
+        document.body.dispatchEvent(event);
+      }
+    }, {
+      key: "toggle",
+      value: function toggle(target, className, previousTarget) {
+        toggleCssClass(previousTarget, className);
+        toggleCssClass(target, className);
       }
     }], [{
       key: "template",
@@ -1344,8 +1372,105 @@
     document.getElementById("footer").innerHTML = MainNav.component();
   };
 
+  function fetchYears() {
+    return _fetchYears.apply(this, arguments);
+  }
+
+  function _fetchYears() {
+    _fetchYears = asyncToGenerator(
+    /*#__PURE__*/
+    regenerator.mark(function _callee() {
+      var years, year;
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              console.log("-== FETCHING YEARS ==-");
+              _context.t1 = JSON;
+              _context.next = 4;
+              return localStorage.getItem("years");
+
+            case 4:
+              _context.t2 = _context.sent;
+              _context.t0 = _context.t1.parse.call(_context.t1, _context.t2);
+
+              if (_context.t0) {
+                _context.next = 8;
+                break;
+              }
+
+              _context.t0 = [];
+
+            case 8:
+              years = _context.t0;
+              console.log("-== FETCHED YEARS ==-");
+              year = generateYear(years.length);
+              years.push(year);
+              storeYear(years);
+              return _context.abrupt("return", years);
+
+            case 14:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+    return _fetchYears.apply(this, arguments);
+  }
+
+  function _templateObject$3() {
+    var data = taggedTemplateLiteral(["\n        <section id=\"new-year\">\n            Year\n            <x-new-year></x-new-year>\n         </section>\n    "]);
+
+    _templateObject$3 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var profileContainer$1 = document.getElementById("main");
+  var html$3 = String.raw;
+
+  var NewYear =
+  /*#__PURE__*/
+  function (_Component) {
+    inherits(NewYear, _Component);
+
+    function NewYear() {
+      classCallCheck(this, NewYear);
+
+      return possibleConstructorReturn(this, getPrototypeOf(NewYear).apply(this, arguments));
+    }
+
+    createClass(NewYear, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {}
+    }], [{
+      key: "component",
+      value: function component() {
+        return html$3(_templateObject$3());
+      }
+    }]);
+
+    return NewYear;
+  }(Component);
+
+  customElements.define("x-new-year", NewYear);
+
+  var main$2 = function main() {
+    console.log("HERE");
+    document.body.addEventListener("on-new-year", function (_) {
+      if (!isInDom("#new-year")) {
+        profileContainer$1.innerHTML = NewYear.component();
+      }
+
+      fetchYears();
+    });
+  };
+
   main$1();
   main();
+  main$2();
 
 }());
 //# sourceMappingURL=bundle.js.map

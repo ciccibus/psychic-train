@@ -11,6 +11,20 @@ function storeProfile(profile) {
   return localStorage.setItem("profile", JSON.stringify(profile));
 }
 
+function storeYear(year) {
+  console.log("-== STORING Years ==-");
+  return localStorage.setItem("years", JSON.stringify(year));
+}
+
+function toggleCssClass(param, className) {
+  if (param instanceof HTMLElement) {
+    return param.classList.toggle(className);
+  }
+  return [...document.querySelectorAll(param)].forEach(element => {
+    element.classList.toggle(className);
+  });
+}
+
 function generateCharacter() {
   console.log("-== GENERATING PROFILE ==-");
   const profile = [
@@ -47,4 +61,21 @@ function generateCharacter() {
   return profile;
 }
 
-export { getRandomInt, generateCharacter, isInDom };
+function generateYear(yearsLength) {
+  console.log("-== GENERATING YEAR ==-");
+  const year = {
+    year: new Date().getFullYear() + yearsLength,
+    activities: ["buy milk", "buy cereal"]
+  };
+
+  return year;
+}
+
+export {
+  getRandomInt,
+  generateCharacter,
+  isInDom,
+  toggleCssClass,
+  generateYear,
+  storeYear
+};

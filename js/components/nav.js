@@ -1,5 +1,6 @@
 import { Component } from "../component.js";
 import DelegatedListener from "../delegatedListener";
+import { toggleCssClass } from "../utils";
 const html = String.raw;
 
 class MainNav extends Component {
@@ -18,7 +19,7 @@ class MainNav extends Component {
           </li>
         </ul>
       </nav>
-      `;
+    `;
   }
   static component() {
     return html`
@@ -29,27 +30,26 @@ class MainNav extends Component {
   }
   connectedCallback() {
     this.addEventListener("click", new DelegatedListener(this));
-    // [...this.getElementsByTagName("a")].forEach(link => {
-    //   link.addEventListener("click", new DelegatedListener(this));
-    // });
   }
   onclick(e) {
     e.preventDefault();
     if (e.target && e.target.nodeName == "LI") {
-      [
-        ...document.querySelectorAll(
-          ".c-nav-bar--bottom .c-nav-bar__item-priority"
-        )
-      ].forEach(element => {
-        element.classList.toggle("c-nav-bar__item-priority");
-      });
-
       const target = e.target;
-      target.classList.add("c-nav-bar__item-priority");
-      const eventName = target.querySelector("a").pathname.substring(1);
-      const event = new CustomEvent(`on-${eventName}`);
-      document.body.dispatchEvent(event);
+      this.toggle(
+        target,
+        "c-nav-bar__item-priority",
+        ".c-nav-bar--bottom .c-nav-bar__item-priority"
+      );
+      this.sendEvent(target.querySelector("a").pathname.substring(1));
     }
+  }
+  sendEvent(eventName) {
+    const event = new CustomEvent(`on-${eventName}`);
+    document.body.dispatchEvent(event);
+  }
+  toggle(target, className, previousTarget) {
+    toggleCssClass(previousTarget, className);
+    toggleCssClass(target, className);
   }
 }
 
