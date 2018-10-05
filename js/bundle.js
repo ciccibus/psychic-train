@@ -1074,6 +1074,10 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function isInDom(selector) {
+    return document.querySelectorAll(selector).length;
+  }
+
   function storeProfile(profile) {
     console.log("-== STORING PROFILE ==-");
     return localStorage.setItem("profile", JSON.stringify(profile));
@@ -1207,9 +1211,10 @@
   customElements.define("x-profile", Profile);
 
   var main = function main() {
-    console.log("MAIN");
-    document.body.addEventListener("on-profile", function (e) {
-      profileContainer.innerHTML = Profile.component();
+    document.body.addEventListener("on-profile", function (_) {
+      if (!isInDom("#profile")) {
+        profileContainer.innerHTML = Profile.component();
+      }
     });
   };
 
@@ -1278,7 +1283,6 @@
 
         if (e.target && e.target.nodeName == "LI") {
           var eventName = e.target.querySelector("a").pathname.substring(1);
-          console.log("on-".concat(eventName));
           var event = new CustomEvent("on-".concat(eventName));
           document.body.dispatchEvent(event);
         }
@@ -1303,7 +1307,6 @@
   var main$1 = function main() {
     document.getElementById("footer").innerHTML = MainNav.component();
   };
-   //node.addEventListener('click', new DelegatedListener(this));
 
   main$1();
   main();

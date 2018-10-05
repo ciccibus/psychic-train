@@ -2,6 +2,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function isInDom(selector) {
+  return document.querySelectorAll(selector).length;
+}
+
 function storeProfile(profile) {
   console.log("-== STORING PROFILE ==-");
   return localStorage.setItem("profile", JSON.stringify(profile));
@@ -43,4 +47,4 @@ function generateCharacter() {
   return profile;
 }
 
-export { getRandomInt, generateCharacter };
+export { getRandomInt, generateCharacter, isInDom };

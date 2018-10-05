@@ -1,6 +1,7 @@
 import { Component } from "../component.js";
 import ProfileItem from "./profile-item";
 import { fetchProfile } from "../fetchProfile";
+import { isInDom } from "../utils";
 
 const profileContainer = document.getElementById("main");
 
@@ -52,9 +53,10 @@ customElements.define("x-profile-item", ProfileItem);
 customElements.define("x-profile", Profile);
 
 const main = function() {
-  console.log("MAIN");
-  document.body.addEventListener("on-profile", e => {
-    profileContainer.innerHTML = Profile.component();
+  document.body.addEventListener("on-profile", _ => {
+    if (!isInDom("#profile")) {
+      profileContainer.innerHTML = Profile.component();
+    }
   });
 };
 

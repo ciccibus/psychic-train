@@ -37,7 +37,6 @@ class MainNav extends Component {
     e.preventDefault();
     if (e.target && e.target.nodeName == "LI") {
       const eventName = e.target.querySelector("a").pathname.substring(1);
-      console.log(`on-${eventName}`);
       const event = new CustomEvent(`on-${eventName}`);
       document.body.dispatchEvent(event);
     }
@@ -51,5 +50,3 @@ const main = function() {
 };
 
 export default main;
-
-//node.addEventListener('click', new DelegatedListener(this));
