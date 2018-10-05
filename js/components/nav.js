@@ -5,7 +5,7 @@ const html = String.raw;
 class MainNav extends Component {
   static template() {
     return html`
-      <nav class="c-nav-bar u-container--wide">
+      <nav class="c-nav-bar c-nav-bar--bottom u-container--wide">
         <ul class="u-clean-list u-flex">
           <li class="c-nav-bar__item c-button c-button--1-3">
             <a href="/career"><i class="fab fa-black-tie fa-2x"></i> <span class="u-visually-hidden">Carrer</span></a>
@@ -36,7 +36,17 @@ class MainNav extends Component {
   onclick(e) {
     e.preventDefault();
     if (e.target && e.target.nodeName == "LI") {
-      const eventName = e.target.querySelector("a").pathname.substring(1);
+      [
+        ...document.querySelectorAll(
+          ".c-nav-bar--bottom .c-nav-bar__item-priority"
+        )
+      ].forEach(element => {
+        element.classList.toggle("c-nav-bar__item-priority");
+      });
+
+      const target = e.target;
+      target.classList.add("c-nav-bar__item-priority");
+      const eventName = target.querySelector("a").pathname.substring(1);
       const event = new CustomEvent(`on-${eventName}`);
       document.body.dispatchEvent(event);
     }
