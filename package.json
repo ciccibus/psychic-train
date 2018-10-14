@@ -20,7 +20,7 @@
     "styles": "node-sass scss/main.scss css/main.css -w -r",
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "dev": "npm-run-all --parallel start watch styles",
+    "dev": "npm-run-all --parallel start watch",
     "start": "http-server"
   },
   "repository": {
