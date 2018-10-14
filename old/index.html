@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Psychic Train</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="dns-prefetch" href="//ajax.googleapis.com">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/vendor/fontfaceobserver.js"></script>
+  <script type="text/javascript">
+    (function () {
+      document.documentElement.className += " wf-inactive";
+
+      // Optimization for Repeat Views
+      if (sessionStorage.foutFontsLoaded) {
+        document.documentElement.classList.remove("wf-inactive");
+        document.documentElement.classList.add("wf-active");
+        return;
+      }
+
+      var fontA = new FontFaceObserver("Montserrat", {});
+
+      Promise.all([fontA.load()]).then(function () {
+        console.log("fontA loaded");
+        document.documentElement.classList.remove("wf-inactive");
+        document.documentElement.classList.add("wf-active");
+
+        // Optimization for Repeat Views
+        sessionStorage.foutFontsLoaded = true;
+      });
+    })();
+  </script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <header class="c-header u-container">
+    Psychic Train
+  </header>
+  <main id="main" class="u-container" style="margin-top: 40px; margin-bottom: 60px;">
+    <article class="c-card">
+      <header class="c-card__header"><time>2009</time></header>
+      <ul class="c-card__feed u-clean-list">
+        <li class="c-card__event">
+          <i class="fas fa-music"></i> You started studying music.
+        </li>
+      </ul>
+    </article>
+    <article class="c-card">
+      <header class="c-card__header"><time>2010</time></header>
+      <ul class="c-card__feed u-clean-list">
+        <li class="c-card__event">
+          <i class="fas fa-school"></i> You started going to school.
+        </li>
+        <li class="c-card__event">
+          <i class="fas fa-graduation-cap"></i> You graduated.
+        </li>
+        <li class="c-card__event">
+          <i class="fab fa-itunes"></i> You released <strong>Stronzo Power</strong> and sold <strong>10 copies</strong>.
+        </li>
+        <li class="c-card__event">
+          <i class="fas fa-pills"></i> You are ill.
+        </li>
+      </ul>
+    </article>
+    <article class="c-card">
+      <header class="c-card__header"><time>2011</time></header>
+      <ul class="c-card__feed u-clean-list">
+        <li class="c-card__event">
+          <i class="fas fa-paint-brush"></i> You started studying art.
+        </li>
+        <li class="c-card__event">
+          <i class="fab fa-itunes"></i> You released <strong>Power Stronzo</strong> and sold <strong>5 copies</strong>.
+        </li>
+        <li class="c-card__event">
+          <i class="fab fa-itunes"></i><strong> Stronzo Power</strong> and sold <strong>10 copies</strong>.
+        </li>
+      </ul>
+    </article>
+    <article class="c-card">
+      <header class="c-card__header"><time>2012</time></header>
+      <ul class="c-card__feed u-clean-list">
+        <li class="c-card__event">
+          <i class="fab fa-itunes"></i><strong>Power Stronzo</strong> and sold <strong>5 copies</strong>.
+        </li>
+        <li class="c-card__event">
+          <i class="fab fa-itunes"></i><strong> Stronzo Power</strong> and sold <strong>10 copies</strong>.
+        </li>
+      </ul>
+    </article>
+  </main>
+  <footer id="footer"></footer>
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script async src="js/bundle.js"></script>
+
+</body>
+
+</html>
