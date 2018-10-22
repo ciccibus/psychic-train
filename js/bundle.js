@@ -1,8 +1,9 @@
 (function () {
 	'use strict';
 
-	function render() {
-	  console.log("render!");
+	function render(oldState, newState) {
+	  var html = "State was:\n\t\t<pre>".concat(JSON.stringify(oldState, null, 2), "</pre>\n\tNow is:\n\t\t<pre>").concat(JSON.stringify(newState, null, 2), "</pre>\n\t");
+	  document.body.innerHTML = html;
 	}
 
 	function unwrapExports (x) {
@@ -25,18 +26,11 @@
 	var INITIAL_STATE = {
 	  message: ""
 	};
-	var state = dist_2(INITIAL_STATE, dist_1);
+	var state = dist_2(INITIAL_STATE, dist_1, render);
 	state.setStore({
 	  message: "Yay! is working!",
 	  action: "Ready!"
 	});
-	var html = "<pre>".concat(JSON.stringify(state.getStore(), null, 2), "</pre>");
-	document.body.innerHTML = html;
-	console.log("=============");
-	console.log(JSON.stringify(state.getStore(), null, 2));
-	console.log("=============");
-	render();
-	console.log("yay!");
 
 }());
 //# sourceMappingURL=bundle.js.map
