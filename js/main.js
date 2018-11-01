@@ -1,13 +1,15 @@
-"use strict"
+"use strict";
 
 import { render } from "./render";
-import { logger, createStore } from 'musical-fiesta';
+import { logger, createStore } from "musical-fiesta";
+import Nav from "./components/nav";
 
-const INITIAL_STATE = { message: ""};
+const INITIAL_STATE = { activeSection: "new-year" };
 
-const state = createStore(INITIAL_STATE, logger, render);
+const state = createStore(INITIAL_STATE, logger, render(Nav));
 
-state.setStore({
-	message: "Yay! is working!",
-	action: "Ready!"
-});
+setTimeout(() => {
+  state.setStore({
+    activeSection: "profile"
+  });
+}, 3000);

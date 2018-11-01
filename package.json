@@ -35,7 +35,7 @@
   "homepage": "https://github.com/ciccibus/psychic-train#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "musical-fiesta": "0.0.4",
+    "musical-fiesta": "^0.2.0",
     "rollup-plugin-async": "^1.2.0"
   }
 }
